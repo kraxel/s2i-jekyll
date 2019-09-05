@@ -7,6 +7,4 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-id -a
-ls -la /run/httpd
-exec /usr/sbin/httpd
+exec /usr/sbin/httpd -f /opt/app-root/etc/httpd.conf -DFOREGROUND
