@@ -27,11 +27,12 @@ RUN source /opt/rh/rh-ruby${RH_RUBY_VERSION}/enable; \
 # COPY ./<builder_folder>/ /opt/app-root/
 
 COPY ./s2i/bin/ /usr/libexec/s2i
-
-# TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
-# RUN chown -R 1001:1001 /opt/app-root
-RUN chown -R 1001:1001 /var/www/html
-RUN echo "Listen 8080" > /etc/httpd/conf.d/port-8080.conf
+COPY ./etc/httpd.conf /opt/app-root/etc
+RUN mkdir -p /run/httpd \
+             /opt/app-root/run \
+             /opt/app-root/html; \
+    chown -R 1001 /run/httpd \
+                  /opt/app-root
 
 USER 1001
 EXPOSE 8080
