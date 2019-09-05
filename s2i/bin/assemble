@@ -33,4 +33,4 @@ else
 	jekyll build
 fi
 cd _site
-cp -a . /var/www/html
+cp -a . /opt/app-root/html
