@@ -30,6 +30,8 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 # RUN chown -R 1001:1001 /opt/app-root
+RUN chown -R 1001:1001 /var/www/html
+RUN echo "Listen 8080" > /etc/httpd/conf.d/port-8080.conf
 
 USER 1001
 EXPOSE 8080

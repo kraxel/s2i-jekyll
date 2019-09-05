@@ -23,4 +23,10 @@ echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
-# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
+if test -f Gemfile; then
+	bundle exec jekyll build
+else
+	jekyll build
+fi
+cd _site
+cp -a . /var/www/html
