@@ -23,7 +23,11 @@ echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
+set -ex
 if test -f Gemfile; then
+	bundle config path $(pwd)/.gem
+	bundle config
+	bundle install
 	bundle exec jekyll build
 else
 	jekyll build
