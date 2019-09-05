@@ -8,3 +8,6 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 # tar cf - <list of files and folders>
+if test -d .gem; then
+	tar cf - .gem
+fi
