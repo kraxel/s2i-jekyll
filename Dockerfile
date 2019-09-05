@@ -30,7 +30,11 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/httpd.conf /opt/app-root/etc
 RUN mkdir -p /run/httpd \
              /opt/app-root/run \
+             /opt/app-root/log \
              /opt/app-root/html; \
+    chmod 1777 /run/httpd \
+               /opt/app-root/run \
+               /opt/app-root/log; \
     chown -R 1001 /run/httpd \
                   /opt/app-root
 
