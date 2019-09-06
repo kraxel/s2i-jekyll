@@ -32,7 +32,7 @@ if test -f Gemfile; then
 else
 	jekyll build
 fi
-if test -f _config.yaml; then
+if test -f _config.yml; then
 	base=$(awk '/^baseurl/ { print $2 }' _config.yml | tr -d '"')
 else
 	base=""
