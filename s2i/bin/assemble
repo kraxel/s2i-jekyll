@@ -15,8 +15,8 @@ fi
 # Restore artifacts from the previous build (if they exist).
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
-  echo "---> Restoring build artifacts..."
-  mv /tmp/artifacts/. ./
+	echo "---> Restoring build artifacts..."
+	mv /tmp/artifacts/. ./
 fi
 
 echo "---> Installing application source..."
@@ -32,5 +32,11 @@ if test -f Gemfile; then
 else
 	jekyll build
 fi
+if test -f _config.yaml; then
+	base=$(awk '/^baseurl/ { print $2 }' _config.yml | tr -d '"')
+else
+	base=""
+fi
 cd _site
-cp -a . /opt/app-root/html
+mkdir -p /opt/app-root/html$base
+cp -a . /opt/app-root/html$base
