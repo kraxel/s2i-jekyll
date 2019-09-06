@@ -3,7 +3,7 @@
 ## Deploy in openshift
 
 ```
-oc new-app kraxel/s2i-jekyll~git://some.host/your/repo/.git
+oc new-app kraxel/s2i-jekyll~git://some.host/your/repo.git
 ```
 
 ## Work with the builder image sources
