@@ -1,4 +1,12 @@
-# s2i builder for jekyll sites.
+# s2i builder for jekyll sites
+
+## Deploy in openshift
+
+```
+oc new-app kraxel/s2i-jekyll~git://some.host/your/repo/.git
+```
+
+## Work with the builder image sources
 
 ### Create the builder image
 The following command will create a builder image named kraxel/s2i-jekyll based on the Dockerfile that was created previously.
