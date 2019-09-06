@@ -1,5 +1,8 @@
 # s2i builder for jekyll sites
 
+Source: [https://github.com/kraxel/s2i-jekyll](https://github.com/kraxel/s2i-jekyll)
+Image: kraxel/s2i-jekyll @ docker.io registry
+
 ## Deploy in openshift
 
 ```
