@@ -1,5 +1,5 @@
 # kraxel/s2i-jekyll
-FROM httpd:2.4
+FROM centos/httpd-24-centos7
 
 LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>"
 
