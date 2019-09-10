@@ -43,15 +43,15 @@ if test -f _config.yml; then
 else
 	base=""
 fi
-dest="/opt/app-root/src/html$base"
+dest="/opt/app-root/src/documentroot$base"
 
 echo "---> Copying pages to $dest ..."
 pushd _site
 mkdir -p "$dest"
 cp -av . "$dest"
-ls -la /opt/app-root/src/html
+ls -la /opt/app-root/src/documentroot
 popd
 
 echo "---> Fix permissions ..."
 fix-permissions ./
-ls -la /opt/app-root/src/html
+ls -la /opt/app-root/src/documentroot
