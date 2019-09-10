@@ -21,8 +21,7 @@ RUN yum install -y centos-release-scl && \
     yum clean all -y
 
 COPY ./s2i/bin/ /usr/libexec/s2i
-COPY ./etc/httpd.d/* /etc/httpd/conf.d
-COPY ./etc/scl_enable /etc
+COPY ./etc/ /etc
 
 ENV BASH_ENV="/etc/scl_enable"
 
