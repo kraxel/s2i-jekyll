@@ -1,5 +1,5 @@
 # kraxel/s2i-jekyll
-FROM openshift/httpd:24
+FROM httpd:2.4
 
 LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>"
 
