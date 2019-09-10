@@ -49,9 +49,7 @@ echo "---> Copying pages to $dest ..."
 pushd _site
 mkdir -p "$dest"
 cp -av . "$dest"
-ls -la /opt/app-root/src/documentroot
 popd
 
 echo "---> Fix permissions ..."
 fix-permissions ./
-ls -la /opt/app-root/src/documentroot
