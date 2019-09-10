@@ -3,6 +3,7 @@ set -x
 id -a
 pwd
 ls -la documentroot
+ls -la /etc/httpd
 #sh -x "${0}.httpd" "$@"
 source ${HTTPD_CONTAINER_SCRIPTS_PATH}/common.sh
 export HTTPD_RUN_BY_S2I=1
