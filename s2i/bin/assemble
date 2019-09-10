@@ -12,31 +12,44 @@ if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
 fi
 
-# Restore artifacts from the previous build (if they exist).
-#
+set -e
+
+echo "---> Enabling s2i support in httpd24 image ..."
+source ${HTTPD_CONTAINER_SCRIPTS_PATH}/common.sh
+config_s2i
+
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
-	echo "---> Restoring build artifacts..."
+	echo "---> Restoring build artifacts ..."
 	mv /tmp/artifacts/. ./
 fi
 
-echo "---> Installing application source..."
+echo "---> Installing application source ..."
 cp -Rf /tmp/src/. ./
 
-echo "---> Building application from source..."
-set -ex
 if test -f Gemfile; then
+	echo "---> Installing packages from Gemfile ..."
 	bundle config path $(pwd)/.gem
 	bundle config
 	bundle install
+	echo "---> Building jekyll site (gemfile version) ..."
 	bundle exec jekyll build
 else
+	echo "---> Building jekyll site (default version) ..."
 	jekyll build
 fi
+
 if test -f _config.yml; then
 	base=$(awk '/^baseurl/ { print $2 }' _config.yml | tr -d '"')
 else
 	base=""
 fi
-cd _site
-mkdir -p /opt/app-root/html$base
-cp -a . /opt/app-root/html$base
+dest="${HTTPD_APP_ROOT}/html$base"
+
+echo "---> Copying pages to $dest ..."
+pushd _site
+mkdir -p "$dest"
+cp -a . "$dest"
+popd
+
+echo "---> Fix permissions ..."
+fix-permissions ./
