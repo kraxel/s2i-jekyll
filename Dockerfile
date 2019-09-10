@@ -22,7 +22,8 @@ RUN yum install -y centos-release-scl && \
 
 RUN cp /usr/libexec/s2i/run /usr/libexec/s2i/run.httpd
 COPY ./s2i/bin/ /usr/libexec/s2i
-COPY ./etc/ /etc
+COPY ./etc/scl_enable /etc/
+COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
 
 ENV BASH_ENV="/etc/scl_enable"
 
