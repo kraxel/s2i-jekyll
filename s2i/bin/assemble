@@ -48,8 +48,10 @@ dest="/opt/app-root/src/html$base"
 echo "---> Copying pages to $dest ..."
 pushd _site
 mkdir -p "$dest"
-cp -a . "$dest"
+cp -av . "$dest"
+ls -la /opt/app-root/src/html
 popd
 
 echo "---> Fix permissions ..."
 fix-permissions ./
+ls -la /opt/app-root/src/html
