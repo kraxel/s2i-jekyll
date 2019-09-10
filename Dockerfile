@@ -26,7 +26,7 @@ COPY ./etc/scl_enable /etc
 
 ENV BASH_ENV="/etc/scl_enable"
 
-RUN source /etc/enable; \
+RUN source /etc/scl_enable; \
     gem install jekyll --version "= $JEKYLL_VERSION"
 
 USER 1001
