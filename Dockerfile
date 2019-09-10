@@ -14,7 +14,8 @@ LABEL io.k8s.description="Platform for building static jekyll sites" \
 USER root
 
 RUN yum install -y centos-release-scl && \
-    yum install -y rh-ruby${RH_RUBY_VERSION} \
+    yum install -y make gcc binutils glibc-devel \
+                   rh-ruby${RH_RUBY_VERSION} \
                    rh-ruby${RH_RUBY_VERSION}-ruby-devel \
                    rh-ruby${RH_RUBY_VERSION}-rubygem-bundler && \
     yum clean all -y
