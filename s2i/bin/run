@@ -4,4 +4,4 @@ id -a
 pwd
 ls -la
 ls -la documentroot
-exec "${0}.httpd" "$@"
+sh -x "${0}.httpd" "$@"
