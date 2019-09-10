@@ -20,7 +20,7 @@ RUN yum install -y centos-release-scl && \
                    rh-ruby${RH_RUBY_VERSION}-rubygem-bundler && \
     yum clean all -y
 
-RUN cp /usr/libexec/s2i/run /usr/libexec/s2i/run.httpd
+RUN for file in /usr/libexec/s2i/*; do cp -v $file ${file}.httpd; done
 COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/scl_enable /etc/
 COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
