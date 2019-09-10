@@ -20,6 +20,7 @@ RUN yum install -y centos-release-scl && \
                    rh-ruby${RH_RUBY_VERSION}-rubygem-bundler && \
     yum clean all -y
 
+RUN cp /usr/libexec/s2i/run /usr/libexec/s2i/run.httpd
 COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/ /etc
 

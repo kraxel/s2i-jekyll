@@ -3,3 +3,5 @@ set -x
 id -a
 pwd
 ls -la
+ls -la documentroot
+exec "${0}.httpd" "$@"
