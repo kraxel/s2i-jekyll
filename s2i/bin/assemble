@@ -43,7 +43,7 @@ if test -f _config.yml; then
 else
 	base=""
 fi
-dest="${HTTPD_APP_ROOT}/html$base"
+dest="/opt/app-root/src/html$base"
 
 echo "---> Copying pages to $dest ..."
 pushd _site
