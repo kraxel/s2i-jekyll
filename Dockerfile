@@ -11,6 +11,8 @@ LABEL io.k8s.description="Platform for building static jekyll sites" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="jekyll,static"
 
+USER root
+
 RUN yum install -y centos-release-scl && \
     yum install -y rh-ruby${RH_RUBY_VERSION} \
                    rh-ruby${RH_RUBY_VERSION}-ruby-devel \
