@@ -12,13 +12,15 @@ LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>" \
 
 USER root
 
-RUN rpm -qa "*ruby*"
-
 RUN for file in /usr/libexec/s2i/*; do cp -v $file ${file}.httpd; done
 COPY ./s2i/bin/ /usr/libexec/s2i
+COPY ./etc/scl_enable /etc/
 COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
 
-RUN gem install jekyll --version "= $JEKYLL_VERSION"
+ENV BASH_ENV="/etc/scl_enable"
+
+RUN source /etc/scl_enable; \
+    gem install jekyll --version "= $JEKYLL_VERSION"
 
 USER 1001
 EXPOSE 8080
