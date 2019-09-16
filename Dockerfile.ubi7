@@ -1,5 +1,5 @@
 # kraxel/s2i-jekyll
-FROM registry.access.redhat.com/ubi7/ruby-25
+FROM rhscl/httpd-24-rhel7
 
 ENV RH_RUBY_VERSION="25" \
     JEKYLL_VERSION="3.8.5"
@@ -11,6 +11,15 @@ LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>" \
       io.openshift.tags="jekyll,static"
 
 USER root
+
+RUN yum --disable-plugin=subscription-manager \
+        install -y make gcc gcc-c++ binutils \
+                   glibc-devel openssl-devel \
+                   rh-ruby${RH_RUBY_VERSION} \
+                   rh-ruby${RH_RUBY_VERSION}-ruby-devel \
+                   rh-ruby${RH_RUBY_VERSION}-rubygem-bundler && \
+    yum --disable-plugin=subscription-manager \
+        clean all -y
 
 RUN for file in /usr/libexec/s2i/*; do cp -v $file ${file}.httpd; done
 COPY ./s2i/bin/ /usr/libexec/s2i
