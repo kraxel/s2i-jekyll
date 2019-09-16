@@ -1,5 +1,5 @@
 # kraxel/s2i-jekyll
-FROM rhscl/httpd-24-rhel7
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
 
 ENV RH_RUBY_VERSION="25" \
     JEKYLL_VERSION="3.8.5" \
