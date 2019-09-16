@@ -16,14 +16,14 @@ LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>" \
 
 USER root
 
-RUN yum --disable-plugin=subscription-manager \
-        install -y make gcc gcc-c++ binutils \
+RUN yum install -y yum-utils && \
+    prepare-yum-repositories rhel-server-rhscl-7-rpms && \
+    yum install -y make gcc gcc-c++ binutils \
                    glibc-devel openssl-devel \
                    rh-ruby${RH_RUBY_VERSION} \
                    rh-ruby${RH_RUBY_VERSION}-ruby-devel \
                    rh-ruby${RH_RUBY_VERSION}-rubygem-bundler && \
-    yum --disable-plugin=subscription-manager \
-        clean all -y
+    yum clean all -y
 
 RUN for file in /usr/libexec/s2i/*; do cp -v $file ${file}.httpd; done
 COPY ./s2i/bin/ /usr/libexec/s2i
