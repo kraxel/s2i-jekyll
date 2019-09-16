@@ -2,11 +2,15 @@
 FROM centos/httpd-24-centos7
 
 ENV RH_RUBY_VERSION="25" \
-    JEKYLL_VERSION="3.8.5"
+    JEKYLL_VERSION="3.8.5" \
+    SUMMARY="Jekyll ${JEKYLL_VERSION}" \
+    DESCRIPTION="Platform for building static jekyll sites (centos7)"
 
 LABEL maintainer="Gerd Hoffmann <kraxel@redhat.com>" \
-      io.k8s.description="Platform for building static jekyll sites" \
-      io.k8s.display-name="Jekyll ${JEKYLL_VERSION}" \
+      summary="${SUMMARY}" \
+      description="${DESCRIPTION}" \
+      io.k8s.display-name="${SUMMARY}" \
+      io.k8s.description="${DESCRIPTION}" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="jekyll,static"
 
