@@ -1,2 +1,0 @@
-source scl_source enable httpd24
-source scl_source enable rh-ruby${RH_RUBY_VERSION}
