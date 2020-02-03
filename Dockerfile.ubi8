@@ -19,11 +19,12 @@ USER root
 COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
 
-RUN gem install jekyll --version "= $JEKYLL_VERSION"
+RUN dnf upate -y;\
+    dnf install -y httpd;\
+    gem install jekyll --version "= $JEKYLL_VERSION"
 
 RUN mkdir -p /opt/app-root;\
     chmod 755 /opt /opt/app-root;\
-    useradd -d /opt/app-root/src -u 1001 default;\
     mkdir -p /run/httpd;\
     chmod 777 /run/httpd /etc/httpd/logs;\
     sed -i -e '/Listen/s/^/#/' /etc/httpd/conf/httpd.conf;\
