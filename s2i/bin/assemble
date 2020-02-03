@@ -12,11 +12,9 @@ if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
 fi
 
-set -e
-
-echo "---> Enabling s2i support in httpd24 image ..."
-source ${HTTPD_CONTAINER_SCRIPTS_PATH}/common.sh
-config_s2i
+echo "--- debug ---"
+id -a
+echo "---"
 
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
 	echo "---> Restoring build artifacts ..."
@@ -52,4 +50,4 @@ cp -av . "$dest"
 popd
 
 echo "---> Fix permissions ..."
-fix-permissions ./
+chmod -R +r .

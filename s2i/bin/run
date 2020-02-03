@@ -1,2 +1,5 @@
 #!/bin/sh
-exec "${0}.httpd" "$@"
+echo "--- debug ---"
+find /etc/httpd -type f | xargs egrep -i -e '(listen)'
+echo "---"
+exec httpd -D FOREGROUND
