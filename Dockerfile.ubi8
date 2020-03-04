@@ -18,8 +18,10 @@ USER root
 
 COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
+COPY ./etc/proxy.sh /etc/profile.d/
 
-RUN dnf upate -y;\
+RUN source /etc/profile.d/proxy.sh; \
+    dnf upate -y;\
     dnf install -y httpd;\
     gem install jekyll --version "= $JEKYLL_VERSION"
 
