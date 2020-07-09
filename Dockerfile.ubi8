@@ -1,7 +1,7 @@
 # kraxel/s2i-jekyll
 FROM registry.access.redhat.com/ubi8/ruby-25
 
-ENV JEKYLL_VERSION="3.8.5" \
+ENV JEKYLL_VERSION="4.1.1" \
     SUMMARY="Jekyll ${JEKYLL_VERSION}" \
     DESCRIPTION="Platform for building static jekyll sites (ubi8)"
 
