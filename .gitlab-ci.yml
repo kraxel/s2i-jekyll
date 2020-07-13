@@ -4,15 +4,16 @@
 # Mentioned here: https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
 
 # do not use "latest" here, if you want this to work in the future
-image: docker:18
+#image: docker:18
+image: registry.gitlab.com/kraxel/podman-docker-builder:latest
 
 stages:
   - build
   - push
 
 # Use this if your GitLab runner does not use socket binding
-services:
-  - docker:dind
+#services:
+#  - docker:dind
 
 before_script:
   # docker login asks for the password to be passed through stdin for security
