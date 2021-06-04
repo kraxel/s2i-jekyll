@@ -22,7 +22,7 @@ COPY ./etc/proxy.sh /etc/profile.d/
 
 RUN source /etc/profile.d/proxy.sh; \
     set -x; \
-    dnf remove -y perl-macros; \
+    dnf module list; \
     dnf update -y && \
     dnf install -y httpd && \
     dnf clean all && \
