@@ -20,7 +20,7 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 COPY ./etc/jekyll-documentroot.conf /etc/httpd/conf.d/
 COPY ./etc/proxy.sh /etc/profile.d/
 
-RUN source /etc/profile.d/proxy.sh; \
+RUN set -x; source /etc/profile.d/proxy.sh; \
     dnf update -y && \
     dnf install -y httpd && \
     dnf clean all && \
