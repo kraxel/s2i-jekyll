@@ -1,3 +1,11 @@
 include:
   - project: 'kraxel/podman-docker-builder'
-    file: 'gitlab-ci-template-nocache.yml'
+    file: 'gitlab-ci-template-multiarch.yml'
+
+boot-aarch64:
+  stage: build
+  rules:
+    - if: '$BUILD_AARCH64 == "yes"'
+  trigger:
+    project: kraxel/ec2-init-scripts
+    branch: boot-aarch64
