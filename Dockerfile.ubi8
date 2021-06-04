@@ -23,7 +23,7 @@ COPY ./etc/proxy.sh /etc/profile.d/
 RUN source /etc/profile.d/proxy.sh; \
     set -x; \
     dnf module list; \
-    dnf update -y --skip-broken && \
+    dnf update -y --skip-broken --nobest && \
     dnf install -y httpd && \
     dnf clean all && \
     gem install jekyll --version "= $JEKYLL_VERSION"
